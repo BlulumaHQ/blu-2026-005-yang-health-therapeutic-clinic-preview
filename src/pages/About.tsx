@@ -3,7 +3,7 @@ import { useLang } from "@/contexts/LangContext";
 import PageBanner from "@/components/PageBanner";
 import celiaImg from "@/assets/celia-yang.jpg";
 import philipImg from "@/assets/philip-lu.jpg";
-import clinicImg from "@/assets/clinic-storefront.png";
+import clinicImg from "@/assets/clinic-storefront.webp";
 import rmtCmtLogo from "@/assets/rmt-cmt-logo.png";
 
 const fadeUp = {

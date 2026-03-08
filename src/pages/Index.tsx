@@ -1,16 +1,17 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLang } from "@/contexts/LangContext";
-import heroBg from "@/assets/hero-bg.jpg";
-import acupunctureImg from "@/assets/acupuncture-service.jpg";
-import cuppingImg from "@/assets/cupping-service.jpg";
-import massageImg from "@/assets/acupressure-service.jpg";
-import moxibustionImg from "@/assets/moxibustion-service.jpg";
-import clinicImg from "@/assets/clinic-storefront.png";
+import heroBg from "@/assets/rmt-service.webp";
+import acupunctureImg from "@/assets/acupuncture-service.webp";
+import cuppingImg from "@/assets/cupping-service.webp";
+import acupressureImg from "@/assets/acupressure-service.webp";
+import moxibustionImg from "@/assets/moxibustion-service.webp";
+import clinicImg from "@/assets/clinic-storefront.webp";
 import celiaImg from "@/assets/celia-yang.jpg";
 import philipImg from "@/assets/philip-lu.jpg";
 import rmtCmtLogo from "@/assets/rmt-cmt-logo.png";
-import { Phone, Clock, MapPin, Star, Shield } from "lucide-react";
+import sectionBg from "@/assets/section-bg-tcm.webp";
+import { Phone, Clock, MapPin, Shield } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -23,7 +24,7 @@ const Index = () => {
   const services = [
     { img: acupunctureImg, en: "Acupuncture", zh: "针灸", descEn: "Traditional needle therapy targeting meridians to restore energy flow and relieve pain.", descZh: "传统针刺疗法，疏通经络，恢复气血流通，缓解疼痛。" },
     { img: cuppingImg, en: "Cupping", zh: "拔罐", descEn: "Ancient technique using suction cups to improve circulation and release muscle tension.", descZh: "古法拔罐，促进血液循环，缓解肌肉紧张。" },
-    { img: massageImg, en: "Acupressure", zh: "推拿", descEn: "Targeted pressure point therapy to regulate qi, relieve stress, and restore balance.", descZh: "穴位按压疗法，调节气血，缓解压力，恢复平衡。" },
+    { img: acupressureImg, en: "Acupressure", zh: "推拿", descEn: "Targeted pressure point therapy to regulate qi, relieve stress, and restore balance.", descZh: "穴位按压疗法，调节气血，缓解压力，恢复平衡。" },
     { img: moxibustionImg, en: "Moxibustion", zh: "艾灸", descEn: "Warming therapy using mugwort to stimulate acupoints and boost immunity.", descZh: "艾草温灸疗法，温通经脉，增强免疫力。" },
   ];
 
@@ -73,9 +74,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Welcome / About Preview */}
-      <section className="section-padding bg-background">
-        <div className="container mx-auto">
+      {/* Welcome / About Preview - with decorative background */}
+      <section className="relative section-padding bg-background overflow-hidden">
+        <img src={sectionBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.06]" />
+        <div className="container mx-auto relative z-10">
           <motion.div
             className="max-w-3xl mx-auto text-center"
             initial="hidden"
@@ -265,9 +267,10 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="section-padding bg-background text-center">
-        <div className="container mx-auto max-w-2xl">
+      {/* CTA with decorative background */}
+      <section className="relative section-padding bg-background text-center overflow-hidden">
+        <img src={sectionBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.05]" />
+        <div className="container mx-auto max-w-2xl relative z-10">
           <p className="text-gold text-xs tracking-[0.3em] uppercase mb-3">{t("Ready to Feel Better?", "准备好感受更好了吗？")}</p>
           <h2 className="font-heading text-3xl md:text-5xl text-foreground font-light mb-6">
             {t("Our Hands Let You Really Feel Better", "让我们的双手让您真正感到舒适")}

@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 import { useLang } from "@/contexts/LangContext";
 import PageBanner from "@/components/PageBanner";
-import acupunctureImg from "@/assets/acupuncture-service.jpg";
-import cuppingImg from "@/assets/cupping-service.jpg";
-import moxibustionImg from "@/assets/moxibustion-service.jpg";
-import acupressureImg from "@/assets/acupressure-service.jpg";
+import acupunctureImg from "@/assets/acupuncture-service.webp";
+import cuppingImg from "@/assets/cupping-service.webp";
+import moxibustionImg from "@/assets/moxibustion-service.webp";
+import acupressureImg from "@/assets/acupressure-service.webp";
+import guashaImg from "@/assets/guasha-service.webp";
+import footMassageImg from "@/assets/foot-massage-service.webp";
+import sectionBg from "@/assets/section-bg-tcm.webp";
 import { Link } from "react-router-dom";
 
 const fadeUp = {
@@ -45,14 +48,14 @@ const TCM = () => {
       descZh: "艾灸是将燃烧的艾草（艾绒）产生的热量作用于特定穴位。对体质虚寒的患者特别有效，有助于调节经络、温暖身体、增强免疫系统。",
     },
     {
-      img: null,
+      img: guashaImg,
       titleEn: "Guasha (Scraping)",
       titleZh: "刮痧",
       descEn: "The skin is covered in oil and scraped with a specialized tool (ceramic or horn) until red marks appear. This therapy improves circulation, dispels fever, reduces inflammation, and boosts immunity by stimulating the body's natural healing response.",
       descZh: "皮肤涂油后用专用工具（陶瓷或牛角）刮拭至出现红痕。此疗法可改善循环、散热退烧、减少炎症，并通过刺激身体自然愈合反应增强免疫力。",
     },
     {
-      img: null,
+      img: footMassageImg,
       titleEn: "Foot Massage",
       titleZh: "足部按摩",
       descEn: "Foot massage targets pressure points on the feet that are connected to nerves, muscles, and organs throughout the body. This therapy relieves pain, reduces stress, improves circulation, and promotes overall relaxation and well-being.",
@@ -68,8 +71,9 @@ const TCM = () => {
       />
 
       {/* Intro */}
-      <section className="section-padding bg-background">
-        <div className="container mx-auto max-w-3xl text-center">
+      <section className="relative section-padding bg-background overflow-hidden">
+        <img src={sectionBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.06]" />
+        <div className="container mx-auto max-w-3xl text-center relative z-10">
           <p className="text-gold text-xs tracking-[0.3em] uppercase mb-3">{t("Our TCM Services", "我们的中医服务")}</p>
           <h2 className="font-heading text-3xl md:text-4xl text-foreground font-light mb-4">
             {t("Comprehensive TCM Treatments", "全面的中医治疗")}
@@ -106,23 +110,23 @@ const TCM = () => {
             {services.map((s, i) => (
               <motion.div
                 key={s.titleEn}
-                className={`grid grid-cols-1 ${s.img ? "lg:grid-cols-2" : ""} gap-10 items-center`}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center"
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
               >
-                {s.img && i % 2 === 0 && (
+                {i % 2 === 0 && (
                   <div className="overflow-hidden rounded-sm">
                     <img src={s.img} alt={t(s.titleEn, s.titleZh)} className="w-full h-80 object-cover" />
                   </div>
                 )}
-                <div className={!s.img ? "max-w-2xl mx-auto text-center" : ""}>
+                <div>
                   <h3 className="font-heading text-3xl text-foreground font-light mb-4">{t(s.titleEn, s.titleZh)}</h3>
-                  <div className={`decorative-line ${!s.img ? "" : "!mx-0"} mb-4`} />
+                  <div className="decorative-line !mx-0 mb-4" />
                   <p className="text-muted-foreground leading-relaxed">{t(s.descEn, s.descZh)}</p>
                 </div>
-                {s.img && i % 2 !== 0 && (
+                {i % 2 !== 0 && (
                   <div className="overflow-hidden rounded-sm">
                     <img src={s.img} alt={t(s.titleEn, s.titleZh)} className="w-full h-80 object-cover" />
                   </div>
