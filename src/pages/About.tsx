@@ -66,7 +66,7 @@ const About = () => {
             {/* Celia */}
             <motion.div className="text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
               <div className="w-64 h-64 mx-auto mb-6 rounded-full overflow-hidden border-2 border-gold/30">
-                <img src={celiaImg} alt="Dr. Celia Yang" className="w-full h-full object-cover object-top" />
+                <img src={celiaImg} alt="Dr. Celia Yang" className="w-full h-full object-cover" style={{ objectPosition: 'center 15%' }} />
               </div>
               <h3 className="font-heading text-2xl text-foreground mb-1">{t("Dr. Celia Yang", "杨医师")}</h3>
               <p className="text-gold text-sm tracking-wider mb-4">{t("TCM Practitioner / Acupuncturist", "中医师 / 针灸师")}</p>
