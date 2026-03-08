@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useLang } from "@/contexts/LangContext";
 import PageBanner from "@/components/PageBanner";
-import massageImg from "@/assets/acupressure-service.jpg";
+import rmtImg from "@/assets/rmt-service.webp";
 import { Link } from "react-router-dom";
 
 const fadeUp = {
@@ -52,7 +52,7 @@ const RMT = () => {
               </div>
             </motion.div>
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-              <img src={massageImg} alt="Registered Massage Therapy" className="w-full h-[400px] object-cover rounded-sm shadow-xl" />
+              <img src={rmtImg} alt="Registered Massage Therapy" className="w-full h-[400px] object-cover rounded-sm shadow-xl" />
             </motion.div>
           </div>
         </div>
