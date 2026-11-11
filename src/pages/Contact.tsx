@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { useLang } from "@/contexts/LangContext";
 import PageBanner from "@/components/PageBanner";
 import parkerPlaceMap from "@/assets/parker-place-map.jpg";
-import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -12,24 +11,6 @@ const fadeUp = {
 
 const Contact = () => {
   const { t } = useLang();
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = new FormData(form);
-    try {
-      await fetch("https://formspree.io/f/mbdabbql", {
-        method: "POST",
-        body: data,
-        headers: { Accept: "application/json" },
-      });
-      setSubmitted(true);
-      form.reset();
-    } catch {
-      // silently fail
-    }
-  };
 
   return (
     <div>
@@ -38,7 +19,7 @@ const Contact = () => {
       {/* Contact Info + Form */}
       <section className="section-padding bg-background">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="max-w-3xl mx-auto">
             {/* Info */}
             <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
               <p className="text-gold text-xs tracking-[0.3em] uppercase mb-3">{t("Contact Information", "联系信息")}</p>
@@ -80,83 +61,6 @@ const Contact = () => {
               </div>
             </motion.div>
 
-            {/* Form */}
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-              <div className="bg-card border border-border p-8 rounded-sm">
-                <h3 className="font-heading text-2xl text-foreground mb-2">{t("Send Us a Message", "发送消息")}</h3>
-                <div className="decorative-line !mx-0 mb-6" />
-
-                {submitted ? (
-                  <div className="text-center py-12">
-                    <Send className="text-gold mx-auto mb-4" size={32} />
-                    <h4 className="font-heading text-xl text-foreground mb-2">{t("Message Sent!", "消息已发送！")}</h4>
-                    <p className="text-muted-foreground text-sm">{t("We'll get back to you soon.", "我们会尽快回复您。")}</p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="text-sm text-foreground mb-1 block">{t("Name", "姓名")} *</label>
-                        <input
-                          type="text"
-                          name="name"
-                          required
-                          className="w-full px-4 py-3 bg-background border border-border rounded-sm text-sm text-foreground focus:outline-none focus:border-gold transition-colors"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-sm text-foreground mb-1 block">{t("Phone", "电话")}</label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          className="w-full px-4 py-3 bg-background border border-border rounded-sm text-sm text-foreground focus:outline-none focus:border-gold transition-colors"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="text-sm text-foreground mb-1 block">{t("Email", "邮箱")} *</label>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        className="w-full px-4 py-3 bg-background border border-border rounded-sm text-sm text-foreground focus:outline-none focus:border-gold transition-colors"
-                      />
-                    </div>
-                    <div>
-                      <label className="text-sm text-foreground mb-1 block">{t("Service Interest", "感兴趣的服务")}</label>
-                      <select
-                        name="service"
-                        className="w-full px-4 py-3 bg-background border border-border rounded-sm text-sm text-foreground focus:outline-none focus:border-gold transition-colors"
-                      >
-                        <option value="">{t("Select a service", "选择服务")}</option>
-                        <option value="acupuncture">{t("Acupuncture", "针灸")}</option>
-                        <option value="cupping">{t("Cupping", "拔罐")}</option>
-                        <option value="acupressure">{t("Acupressure", "推拿")}</option>
-                        <option value="moxibustion">{t("Moxibustion", "艾灸")}</option>
-                        <option value="guasha">{t("Guasha", "刮痧")}</option>
-                        <option value="foot-massage">{t("Foot Massage", "足部按摩")}</option>
-                        <option value="rmt">{t("Registered Massage Therapy", "注册按摩治疗")}</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="text-sm text-foreground mb-1 block">{t("Message", "留言")} *</label>
-                      <textarea
-                        name="message"
-                        required
-                        rows={5}
-                        className="w-full px-4 py-3 bg-background border border-border rounded-sm text-sm text-foreground focus:outline-none focus:border-gold transition-colors resize-none"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full px-8 py-3 bg-gold text-primary-foreground text-sm uppercase tracking-widest hover:opacity-90 transition-opacity"
-                    >
-                      {t("Send Message", "发送消息")}
-                    </button>
-                  </form>
-                )}
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
